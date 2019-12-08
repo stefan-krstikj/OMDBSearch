@@ -6,9 +6,12 @@ import android.os.AsyncTask;
 import android.provider.ContactsContract;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Room;
 
 import java.util.List;
+
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public class MovieRepository {
     private static MovieDatabase database = null;
@@ -17,6 +20,7 @@ public class MovieRepository {
         if(database == null){
             database = Room
                     .databaseBuilder(context, MovieDatabase.class, "db-app")
+                    .fallbackToDestructiveMigration()
                     .build();
         }
     }
@@ -24,6 +28,8 @@ public class MovieRepository {
     public LiveData<List<Movie>> getAllMovies(){
             return database.movieDao().getAllAsync();
     }
+
+
 
     @SuppressLint("StaticFieldLeak")
     public void insert(Movie movie){

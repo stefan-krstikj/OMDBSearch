@@ -1,8 +1,10 @@
 package com.example.android.moviesactivity.database;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public interface MovieDao{
     @Query("SELECT * from movie WHERE Title = :title")
     public List<Movie> findByTitle(String title);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(Movie... movies);
 
     @Query("DELETE from movie WHERE imdbID = :id")

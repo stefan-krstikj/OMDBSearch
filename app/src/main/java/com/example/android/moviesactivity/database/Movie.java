@@ -1,5 +1,6 @@
 package com.example.android.moviesactivity.database;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,17 +9,15 @@ import androidx.room.PrimaryKey;
 public class Movie {
 
     @PrimaryKey
-    public long imdbID;
+    @NonNull
+    public String imdbID;
 
-    @ColumnInfo(name = "Year")
-    public int movieYear;
+    public String Year;
 
-    @ColumnInfo(name = "Title")
-    public String movieName;
+    @NonNull
+    public String Title;
 
-    @ColumnInfo(name = "Plot")
-    public String shortInfo;
+    public String Plot;
 
-    @ColumnInfo(name = "Poster")
-    public String movieThumbnailUrl;
+    public String Poster;
 }

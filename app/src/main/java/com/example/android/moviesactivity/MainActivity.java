@@ -1,29 +1,35 @@
 package com.example.android.moviesactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.SearchView;
 
+
+import com.example.android.moviesactivity.asynctask.MovieListAsyncTask;
+import com.example.android.moviesactivity.database.Movie;
+import com.example.android.moviesactivity.database.MovieRepository;
+import com.example.android.moviesactivity.holders.CustomListViewHolder;
+
+import java.util.List;
 import java.util.logging.Logger;
 
 
 public class MainActivity extends AppCompatActivity {
 
     CustomMovieAdapter adapter;
+    MovieListViewModel movieListViewModel;
+    boolean dataInitaliazed = false;
+    SearchView searchView;
 
     Logger logger = Logger.getLogger("MainActivity");
 
@@ -34,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
         initListView();
-        initData();
-
+      //  initData();
     }
 
-    private void initData(){
-        MovieListViewModel movieListViewModel = ViewModelProviders.of(this).get(MovieListViewModel.class);
-        movieListViewModel.getAll().observe(this, data -> {
+
+    private void initData(String query){
+        movieListViewModel = ViewModelProviders.of(this).get(MovieListViewModel.class);
+        movieListViewModel.getAll(query).observe(this, data -> {
             adapter.updateDataset(data);
         });
     }
@@ -61,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CustomListViewHolder listViewHolder =(CustomListViewHolder) view.getTag();
-                String selectedMovieName =adapter.getClickedMovieName(listViewHolder);
+                CustomListViewHolder listViewHolder = (CustomListViewHolder) view.getTag();
+                Movie selectedMovie = adapter.getClickedMovie(listViewHolder);
+
             }
         };
     }
@@ -71,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_menu, menu);
 
-        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
 
         searchView.setOnQueryTextListener(getOnQueryTextListener());
         return true;
@@ -81,7 +88,17 @@ public class MainActivity extends AppCompatActivity {
         return new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                if(!dataInitaliazed){
+                    initData(query);
+                    dataInitaliazed = true;
+                }
+                else {
+                    movieListViewModel.getAll(query);
+                }
+
+                searchView.setQuery("", false);
+                searchView.clearFocus();
+                return true;
             }
 
             @Override
