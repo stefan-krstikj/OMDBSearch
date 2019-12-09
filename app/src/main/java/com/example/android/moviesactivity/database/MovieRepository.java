@@ -14,7 +14,7 @@ import java.util.List;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class MovieRepository {
-    private static MovieDatabase database = null;
+    private MovieDatabase database = null;
 
     public MovieRepository(Context context){
         if(database == null){
@@ -27,6 +27,10 @@ public class MovieRepository {
 
     public LiveData<List<Movie>> getAllMovies(){
             return database.movieDao().getAllAsync();
+    }
+
+    public LiveData<Movie> getMovieById(String id){
+        return database.movieDao().findById(id);
     }
 
 
@@ -49,6 +53,17 @@ public class MovieRepository {
             @Override
             protected Void doInBackground(Void... voids) {
                 database.movieDao().deleteAll();
+                return null;
+            }
+        }.execute();
+    }
+
+    public void deleteById(String id){
+        new AsyncTask<Void, Void, Void>(){
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                database.movieDao().delete(id);
                 return null;
             }
         }.execute();

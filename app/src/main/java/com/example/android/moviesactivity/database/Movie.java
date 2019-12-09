@@ -20,4 +20,13 @@ public class Movie {
     public String Plot;
 
     public String Poster;
+
+    public String Actors;
+    public String Director;
+    public String Rated;
+    public String Runtime;
+    public String Genre;
+    public String Production;
+    public String imdbRating;
+    public String Metascore;
 }

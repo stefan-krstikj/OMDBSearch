@@ -1,5 +1,6 @@
 package com.example.android.moviesactivity.service;
 
+import com.example.android.moviesactivity.database.Movie;
 import com.example.android.moviesactivity.models.MovieList;
 
 import retrofit2.Call;
@@ -11,5 +12,12 @@ public interface MovieListService {
     @GET("?type=movie")
     Call<MovieList> getMovies(
             @Query("apikey") String apiKey,
-            @Query("s") String title);
+            @Query("s") String title
+    );
+
+    @GET("?")
+    Call<Movie> getMovieByID(
+            @Query("apikey") String apiKey,
+            @Query("i") String id
+    );
 }

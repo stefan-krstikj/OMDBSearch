@@ -1,5 +1,7 @@
-package com.example.android.moviesactivity;
+package com.example.android.moviesactivity.adapters;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.moviesactivity.R;
 import com.example.android.moviesactivity.database.Movie;
 import com.example.android.moviesactivity.holders.CustomListViewHolder;
 
@@ -41,7 +44,7 @@ public class CustomMovieAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_layout, parent, false);
+                .inflate(R.layout.list_layout_material, parent, false);
         return new CustomListViewHolder(v, parent.getContext());
     }
 
@@ -59,4 +62,5 @@ public class CustomMovieAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return dataset.size();
     }
+
 }

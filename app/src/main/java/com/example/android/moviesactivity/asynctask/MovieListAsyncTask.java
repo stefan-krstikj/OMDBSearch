@@ -5,6 +5,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.android.moviesactivity.api.APIKeys;
 import com.example.android.moviesactivity.api.omdbApiClient;
 import com.example.android.moviesactivity.database.Movie;
 import com.example.android.moviesactivity.models.MovieList;
@@ -15,12 +16,14 @@ import java.io.IOException;
 import retrofit2.Call;
 
 public class MovieListAsyncTask extends AsyncTask<String, Integer, MovieList> {
+    static MovieRepository repository;
 
-    public MovieRepository getRepository() {
+
+    public static MovieRepository getRepository() {
         return repository;
     }
 
-    MovieRepository repository;
+
 
     public MovieListAsyncTask(MovieRepository repository){
         this.repository = repository;
@@ -34,7 +37,7 @@ public class MovieListAsyncTask extends AsyncTask<String, Integer, MovieList> {
 
     @Override
     protected MovieList doInBackground(String... strings) {
-        final Call<MovieList> movieList = omdbApiClient.getService().getMovies("434c6b1f", strings[0]);
+        final Call<MovieList> movieList = omdbApiClient.getService().getMovies(APIKeys.APIKEY, strings[0]);
         try {
             MovieList list = movieList.execute().body();
             return list;

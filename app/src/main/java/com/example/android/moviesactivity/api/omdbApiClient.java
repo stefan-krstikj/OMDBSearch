@@ -12,7 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class omdbApiClient {
 
     private static Retrofit retroFit = null;
-    // api = 434c6b1f
     private static Retrofit getRetroFit(){
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);

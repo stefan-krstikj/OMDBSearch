@@ -6,14 +6,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.moviesactivity.R;
 import com.example.android.moviesactivity.database.Movie;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 public class CustomListViewHolder extends RecyclerView.ViewHolder {
 
@@ -24,9 +21,9 @@ public class CustomListViewHolder extends RecyclerView.ViewHolder {
     public CustomListViewHolder(@NonNull View itemView, Context context) {
         super(itemView);
 
-        Poster = itemView.findViewById(R.id.Poster);
-        Title = itemView.findViewById(R.id.textView_movieName);
-        Year = itemView.findViewById(R.id.textView_movieYear);
+        Poster = itemView.findViewById(R.id.listMovieMaterialPoster);
+        Title = itemView.findViewById(R.id.listMovieMaterialTitle);
+        Year = itemView.findViewById(R.id.listMovieMaterialYear);
         itemView.setTag(this);
         this.context = context;
     }
