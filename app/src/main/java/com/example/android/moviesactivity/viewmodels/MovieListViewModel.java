@@ -14,6 +14,7 @@ import java.util.List;
 public class MovieListViewModel extends AndroidViewModel {
     public  MovieRepository repository;
 
+
     public MovieListViewModel(Application application) {
         super(application);
         repository = new MovieRepository(application);

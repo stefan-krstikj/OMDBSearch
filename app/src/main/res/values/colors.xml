@@ -3,9 +3,17 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="darkListBackground">#263238</color>
-    <color name="darkListTextColor">#eeeeee</color>
-    <color name="darkListHeadlineColor">#f5f5f5</color>
-    <color name="darkListTitleColor">#fafafa</color>
+
+    <color name="darkListPrimary">#f5f5f5</color>
+    <color name="darkListPrimaryLight">#ffffff</color>
+    <color name="darkListPrimaryDark">#c2c2c2</color>
+
+    <color name="darkListSecondary">#424242</color>
+    <color name="darkListSecondaryLight">#6d6d6d</color>
+    <color name="darkListSecondaryDark">#1b1b1b</color>
+
+    <color name="darkListText">#424242</color>
+    <color name="darkListHeadline">#6d6d6d</color>
+    <color name="darkListTitle">#1b1b1b</color>
 
 </resources>

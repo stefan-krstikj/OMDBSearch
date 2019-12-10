@@ -7,12 +7,14 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 
 import com.example.android.moviesactivity.adapters.CustomMovieAdapter;
@@ -121,7 +123,7 @@ public class MoviesSearchActivity extends AppCompatActivity {
          intent.putExtra("Actors", selectedMovie.Actors);
          intent.putExtra("imdbRating", selectedMovie.imdbRating);
          intent.putExtra("Metascore", selectedMovie.Metascore);
-        startActivity(intent);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     @Override
@@ -145,7 +147,6 @@ public class MoviesSearchActivity extends AppCompatActivity {
                 else {
                     movieListViewModel.getAll(query);
                 }
-
                 searchView.setQuery("", false);
                 searchView.clearFocus();
                 return true;
