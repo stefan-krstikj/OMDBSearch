@@ -9,7 +9,7 @@ This project uses the Gradle build system. To build this project, use the `gradl
 
 ![search](screenshots/search-small.png)
 ![search results](screenshots/search-results-small.png)
-![detailed view](screenshots/detailed-movie-small.png)
+![detailed view](screenshots/search-details-small.png)
 
 ### Prerequisites
 

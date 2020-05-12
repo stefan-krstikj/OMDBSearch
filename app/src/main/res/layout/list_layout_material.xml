@@ -13,12 +13,15 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="0dp"
-        android:background="@color/darkListPrimary"
+        android:background="@color/movies_blue_background"
+        android:padding="8dp"
+        app:cardCornerRadius="3dp"
         android:elevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/list_item_color">
 
             <ImageView
                 android:id="@+id/listMovieMaterialPoster"
@@ -39,7 +42,7 @@
                 android:layout_marginEnd="8dp"
                 android:text="Batman v Superman: Dawn of Justice"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textColor="@color/darkListSecondary"
+                android:textColor="@color/color_text_head_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/listMovieMaterialPoster"
@@ -50,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2015"
-                android:textColor="@color/darkListSecondaryLight"
+                android:textColor="@color/movies_blue_background"
                 app:layout_constraintStart_toStartOf="@+id/listMovieMaterialTitle"
                 app:layout_constraintTop_toBottomOf="@+id/listMovieMaterialTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>

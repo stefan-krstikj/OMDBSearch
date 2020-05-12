@@ -14,6 +14,7 @@ import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -107,6 +108,13 @@ public class MoviesSearchActivity extends AppCompatActivity {
         }
     }
 
+    private void removeIntroText(){
+        TextView text = findViewById(R.id.textView_click);
+        ImageView arrow = findViewById(R.id.imageView_arrow);
+        text.setVisibility(View.INVISIBLE);
+        arrow.setVisibility(View.INVISIBLE);
+    }
+
     private void showDetailedView(Movie selectedMovie){
         Intent intent = new Intent(this, MovieDetailsActivity.class);
 
@@ -143,6 +151,7 @@ public class MoviesSearchActivity extends AppCompatActivity {
                 if(!dataInitaliazed){
                     initData(query);
                     dataInitaliazed = true;
+                    removeIntroText();
                 }
                 else {
                     movieListViewModel.getAll(query);
